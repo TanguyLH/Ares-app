@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/main.ts"
+    "start:nodemon": "nodemon src/main.ts",
+    "start:dev": "nest start --watch",
+    "format": "prettier --write \"src/**/*.ts\"", 
+    "start": "nest start"
   },
   "keywords": [],
   "author": "",

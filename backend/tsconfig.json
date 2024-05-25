@@ -5,6 +5,7 @@
     "declaration": true,
     "removeComments": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
