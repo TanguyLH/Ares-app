@@ -131,3 +131,6 @@ dist
 
 # No environment files
 # .env*
+
+# Package-lock
+package-lock.json
