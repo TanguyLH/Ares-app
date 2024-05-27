@@ -1,0 +1,22 @@
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_user WHERE usename = ':DB_USER') THEN
+        CREATE USER :DB_USER WITH PASSWORD ':DB_PASSWORD';
+    END IF;
+END $$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = ':DB_NAME') THEN
+        CREATE DATABASE :DB_NAME OWNER :DB_USER;
+    END IF;
+END $$;
+
+\c :DB_NAME
+
+DROP TABLE IF EXISTS habit_sheet;
+
+CREATE TABLE habit_sheet (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);

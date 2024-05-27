@@ -4,13 +4,17 @@ BEGIN
         CREATE USER ares WITH PASSWORD 'ArEsPaSsWoRd';
     END IF;
 END $$;
-CREATE DATABASE habits OWNER 'ares';
+
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'habits') THEN
+        CREATE DATABASE habits OWNER 'ares';
+    END IF;
+END $$;
 
 \c habits
 
-DROP TABLE IF EXISTS habit_sheet;
-
-CREATE TABLE habit_sheet (
+CREATE TABLE IF NOT EXISTS habit_sheet (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL
 );
