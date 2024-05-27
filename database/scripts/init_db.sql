@@ -8,13 +8,15 @@ END $$;
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'habits') THEN
-        CREATE DATABASE habits OWNER 'ares';
+        CREATE DATABASE habits OWNER ares;
     END IF;
 END $$;
 
 \c habits
 
-CREATE TABLE IF NOT EXISTS habit_sheet (
+DROP TABLE IF EXISTS habitsSheet;
+
+CREATE TABLE habitsSheet (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    ownerName TEXT NOT NULL
 );

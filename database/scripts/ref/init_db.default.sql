@@ -14,9 +14,9 @@ END $$;
 
 \c :DB_NAME
 
-DROP TABLE IF EXISTS habit_sheet;
+DROP TABLE IF EXISTS habitsSheet;
 
-CREATE TABLE habit_sheet (
+CREATE TABLE habitsSheet (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    ownerName TEXT NOT NULL
 );

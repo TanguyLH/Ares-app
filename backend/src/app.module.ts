@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { HealthModule } from './health/health.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HabitsModule } from './habits/habits.module';
 
 @Module({
   imports: [
@@ -22,8 +23,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         synchronize: true,
         retryAttempts: 5,
         retryDelay: 5000,
+        autoLoadEntities: true,
+        entitySkipConstructor: true,
       }),
     }),
+    HabitsModule,
   ],
 })
 export class AppModule {}
