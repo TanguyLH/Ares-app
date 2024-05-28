@@ -11,12 +11,3 @@ BEGIN
         CREATE DATABASE :DB_NAME OWNER :DB_USER;
     END IF;
 END $$;
-
-\c :DB_NAME
-
-DROP TABLE IF EXISTS habitsSheet;
-
-CREATE TABLE habitsSheet (
-    id SERIAL PRIMARY KEY,
-    ownerName TEXT NOT NULL
-);

@@ -3,6 +3,8 @@ import { HealthModule } from './health/health.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HabitsSheetModule } from './habitsSheets/habits.sheet.module';
+import { HabitsModule } from './habits/habits.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -25,9 +27,13 @@ import { HabitsSheetModule } from './habitsSheets/habits.sheet.module';
         retryDelay: 5000,
         autoLoadEntities: true,
         entitySkipConstructor: true,
+        migrations: ["migrations/*{.ts,.js}"]
       }),
     }),
-    HabitsSheetModule,
+    TypeOrmModule.forFeature([
+    
+    ]),
+    UsersModule
   ],
 })
 export class AppModule {}
