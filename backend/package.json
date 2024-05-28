@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx jest",
+    "dev": "nodemon .",
     "start:nodemon": "nodemon src/main.ts",
-    "start:dev": "nest start --watch",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "start": "nest start"
+    "start": "nest start --watch",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",
@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
+    "@nestjs/testing": "^10.3.8",
+    "@types/jest": "^29.5.12",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"

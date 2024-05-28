@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { HabitsService } from './habits.service';
+import { HabitsSheetService } from './habits.sheet.service';
 import { CreateHabitsSheetDto } from './dto/create-habits-sheet.dto';
 import { UpdateHabitsSheetDto } from './dto/update-habits-sheet.dto';
 
-@Controller('habits')
-export class HabitsController {
-  constructor(private readonly habitsService: HabitsService) {}
+@Controller('api/v1/habitssheet')
+export class HabitsSheetController {
+  constructor(private readonly habitsService: HabitsSheetService) {}
 
   @Post()
   create(@Body() createHabitsSheetDto: CreateHabitsSheetDto) {

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { HealthModule } from './health/health.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HabitsModule } from './habits/habits.module';
+import { HabitsSheetModule } from './habitsSheets/habits.sheet.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { HabitsModule } from './habits/habits.module';
         entitySkipConstructor: true,
       }),
     }),
-    HabitsModule,
+    HabitsSheetModule,
   ],
 })
 export class AppModule {}

@@ -29,9 +29,23 @@ the sql script. If everything went correctly, we then can remove the init script
 
 ## RUN BACKEND
 
+### Stack
+
+#### Global
+Nest JS, Open API, dotenv
+
+#### Dev
+Jest, Typescript, Nodemon 
+
+## Commands
+
 1. Go in backend folder
 2. Run npm i
 3. Run npm run start
 4. Check in browser at localhost:8089/api/v1/health if you get a json healthcheck
 
 ## Frontend
+
+## TODOs
+
+-[ ] Integrate Nest and Jest to test the project

@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class HabitsService {
+export class HabitsSheetService {
   constructor(
     @InjectRepository(HabitsSheet)
     private habitsSheetRepository: Repository<HabitsSheet>,
