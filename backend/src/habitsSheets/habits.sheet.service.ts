@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateHabitsSheetDto } from './dto/create-habits-sheet.dto';
 import { UpdateHabitsSheetDto } from './dto/update-habits-sheet.dto';
-import { HabitsSheet } from 'src/entities/habits.sheet.entity';
+import { HabitsSheet } from '@/entities/habits-sheet.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 

@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { HabitsService } from './habits.service';
 import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
-import { Habit } from './entities/habit.entity';
+import { Habit } from '@/entities/habit.entity';
 
 @ApiTags('Habit')
 @Controller('api/v1/habit')
@@ -39,10 +39,19 @@ export class HabitsController {
   @ApiOperation({ summary: 'Update a habit by ID' })
   @ApiResponse({ status: 200, description: 'The habit has been successfully updated.', type: Habit })
   @ApiResponse({ status: 404, description: 'Habit not found' })
+  @ApiResponse({ status: 404, description: 'Habit not found' })
   @ApiParam({ name: 'id', description: 'ID of the habit', type: String })
   @ApiBody({ type: UpdateHabitDto })
   update(@Param('id') id: string, @Body() updateHabitDto: UpdateHabitDto) {
-    return this.habitsService.update(+id, updateHabitDto);
+    try {
+      return this.habitsService.update(+id, updateHabitDto);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new NotFoundException('Habit not found');
+      } else {
+        throw new HttpException('an unknown error occurred', HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+    }
   }
 
   @Delete(':id')

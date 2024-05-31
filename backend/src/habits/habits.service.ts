@@ -3,7 +3,7 @@ import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Habit } from './entities/habit.entity';
+import { Habit } from '@/entities/habit.entity';
 
 @Injectable()
 export class HabitsService {
@@ -22,7 +22,7 @@ export class HabitsService {
   }
 
   async findOne(id: number): Promise<Habit> {
-    const habit = await this.habitRepository.findOneBy(id);
+    const habit = await this.habitRepository.findOneBy({id});
     if (!habit) {
       throw new NotFoundException('Habit with ID ${id} not found');
     }
@@ -30,12 +30,12 @@ export class HabitsService {
   }
 
   async update(id: number, updateHabitDto: UpdateHabitDto): Promise<Habit> {
-    const habit = this.habitRepository.findOneBy(id);
+    let habit = await this.habitRepository.findOneBy({id});
     if (!habit) {
       throw new NotFoundException('Habit with ID ${id} not found');
     }
-    Object.assign(habit, updateHabitDto);
-    return this.habitRepository.save(habit);
+    const updatedHabit = this.habitRepository.save({...habit, ...updateHabitDto});
+    return updatedHabit;
   }
 
   async remove(id: number): Promise<void> {

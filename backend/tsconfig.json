@@ -15,12 +15,17 @@
     "baseUrl": "./",
     "incremental": true,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "@/*": ["src/*"],
+      // entities path
+      "@/entities/*": ["src/entities/*"],
+    }
   },
   "include": [
     "./src/*.ts"
   ],
   "exclude": [
     "./node_modules"
-  ]
+  ],
 }
