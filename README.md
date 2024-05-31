@@ -50,6 +50,12 @@ To create a dev environment
 **npx expo start**
 
 
+To create a dev environment
+```
+cd frontend\Ares-app
+npx expo start
+```
+
 ## TODOs
 
 -[ ] Integrate Nest and Jest to test the project
