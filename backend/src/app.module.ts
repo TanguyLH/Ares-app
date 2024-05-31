@@ -33,7 +33,9 @@ import { UsersModule } from './users/users.module';
     TypeOrmModule.forFeature([
     
     ]),
-    UsersModule
+    UsersModule,
+    HabitsModule,
+    HabitsSheetModule
   ],
 })
 export class AppModule {}

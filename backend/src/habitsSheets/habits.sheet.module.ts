@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { HabitsSheetService } from './habits.sheet.service';
 import { HabitsSheetController } from './habits.sheet.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HabitsSheet } from '../entities/habits.sheet.entity'
+import { HabitsSheet } from '@/entities/habits-sheet.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([HabitsSheet])],

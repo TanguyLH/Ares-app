@@ -4,11 +4,11 @@ import { Habit } from './habit.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  username: string;
+  username!: string;
 
-  @OneToMany(() => Habit, habit => habit.user)
-  habits: Habit[];
+  @OneToMany(() => Habit, habit => habit.authorId)
+  habits!: Habit[];
 }

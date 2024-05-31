@@ -5,17 +5,17 @@ import { HabitsSheet } from './habits-sheet.entity';
 @Entity()
 export class Habit {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  description: string;
+  description!: string;
 
   @ManyToOne(() => HabitsSheet, habitsSheet => habitsSheet.habits)
-  habitsSheet: HabitsSheet;
+  habitsSheet!: HabitsSheet;
 
   @ManyToOne(() => User, user => user.habits)
-  user: User;
+  authorId!: User;
 }
