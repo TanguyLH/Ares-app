@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,7 +13,12 @@ export class HabitsService {
   ) {}
 
   async create(createHabitDto: CreateHabitDto): Promise<Habit> {
-    const habit = this.habitRepository.create(createHabitDto);
+    const habit = new Habit();
+    habit.name = createHabitDto.name;
+    habit.description = createHabitDto.description;
+    if (!habit.name || !habit.description) {
+      throw new BadRequestException('Name and description are required');
+    }
     return this.habitRepository.save(habit);
   }
 
