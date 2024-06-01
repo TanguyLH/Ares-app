@@ -25,8 +25,8 @@ export class HabitsSheetService {
   async findOne(id: number) : Promise<HabitsSheet | null> {
     return await this.habitsSheetRepository.findOneBy({ id });
   }
-
   async update(id: number, updateHabitsSheetDto: UpdateHabitsSheetDto) : Promise<HabitsSheet | null> {
+
     return await this.habitsSheetRepository.save({id: id, name: updateHabitsSheetDto.ownerName});
   }
 

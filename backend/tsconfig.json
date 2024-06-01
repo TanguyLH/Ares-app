@@ -17,13 +17,13 @@
     "esModuleInterop": true,
     "strict": true,
     "paths": {
-      "@/*": ["src/*"],
-      // entities path
       "@/entities/*": ["src/entities/*"],
+      "@/seed/*": ["src/seed/*"],
     }
   },
   "include": [
-    "./src/*.ts"
+    "./src/**/*.ts",
+    "./*.ts"
   ],
   "exclude": [
     "./node_modules"

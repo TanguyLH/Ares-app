@@ -3,7 +3,7 @@ import { HabitsSheetService } from './habits.sheet.service';
 import { CreateHabitsSheetDto } from './dto/create-habits-sheet.dto';
 import { UpdateHabitsSheetDto } from './dto/update-habits-sheet.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { HabitsSheet } from 'src/entities/habits.sheet.entity';
+import { HabitsSheet } from '@/entities/habits-sheet.entity';
 
 @Controller('api/v1/habitssheet')
 export class HabitsSheetController {
