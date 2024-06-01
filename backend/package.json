@@ -8,7 +8,10 @@
     "dev": "nodemon .",
     "start:nodemon": "nodemon src/main.ts",
     "start": "nest start --watch",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d db_handler/data_source.ts",
+    "seed:run": "npx ts-node db_handler/seed/seedDatabase.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "dto-classes": "^0.0.13",
-    "pg": "^8.11.5",
-    "typeorm": "^0.3.20"
+    "pg": "^8.11.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
@@ -34,6 +36,7 @@
     "@types/jest": "^29.5.12",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
+    "typeorm": "^0.3.20",
     "typescript": "^5.4.5"
   }
 }

@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import { habitSeedData } from './HabitSeedData';
-import { Habit } from '../entities/habit.entity';
-import { User } from '../entities/user.entity';
-import { HabitsSheet } from '../entities/habits-sheet.entity';
+import { Habit } from '../../src/entities/habit.entity';
+import { User } from '../../src/entities/user.entity';
+import { HabitsSheet } from '../../src/entities/habits-sheet.entity';
 
 async function seedDatabase() {
 	const SeedDataSource = new DataSource({

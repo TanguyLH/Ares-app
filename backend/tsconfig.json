@@ -18,7 +18,7 @@
     "strict": true,
     "paths": {
       "@/entities/*": ["src/entities/*"],
-      "@/seed/*": ["src/seed/*"],
+      "@/seed/*": ["db_handler/seed/*"],
     }
   },
   "include": [

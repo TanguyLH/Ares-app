@@ -39,7 +39,13 @@ export class HabitsService {
     if (!habit) {
       throw new NotFoundException('Habit with ID ${id} not found');
     }
-    const updatedHabit = this.habitRepository.save({...habit, ...updateHabitDto});
+    if (updateHabitDto.name) {
+      habit.name = updateHabitDto.name;
+    }
+    if (updateHabitDto.description) {
+      habit.description = updateHabitDto.description;
+    }
+    const updatedHabit = this.habitRepository.save(habit);
     return updatedHabit;
   }
 
