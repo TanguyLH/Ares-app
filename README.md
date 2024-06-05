@@ -46,7 +46,7 @@ Jest, Typescript, Nodemon
 
 ## Frontend
 To create a dev environment
-**cd frontend\Ares-app**
+**cd frontend**
 **npx expo start**
 
 
