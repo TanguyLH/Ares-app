@@ -1,7 +1,7 @@
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import { Text, View } from './Themed';
+import {Text, View} from "react-native";
 export default function HabitRow({habit}) {
   return (
       <View style={styles.row}>

@@ -1,8 +1,9 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
-import HabitRow from "@/components/HabitRow";
+import HabitRow from "@/components/HabitTracker/HabitRow";
 
-import { Text, View } from './Themed';
+import {Text, View} from "react-native";
+import ButtonAddHabit from "@/components/HabitTracker/ButtonAddHabit";
 
 export default function HabitTable({ data }) {
   return (
@@ -16,15 +17,14 @@ export default function HabitTable({ data }) {
             renderItem={({ item }) => <HabitRow habit={item} />}
             keyExtractor={(item) => item.id.toString()}
         />
+        <ButtonAddHabit />
       </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    backgroundColor: "#f5f5f5"
   },
   headerTopBar: {
     backgroundColor: "#85C1E9",

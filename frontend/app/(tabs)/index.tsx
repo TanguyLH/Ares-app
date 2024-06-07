@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
-import HabitTable from "@/components/HabitTable";
+import HabitTable from "@/components/HabitTracker/HabitTable";
 
 const DATAS = [
   {"id": 1,"name": "sleep 8h", "objectiveRelated": "have a better sleep"},
