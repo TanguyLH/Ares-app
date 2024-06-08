@@ -8,7 +8,7 @@ const HabitList: React.FC = () => {
   useEffect(() => {
     const fetchHabits = async () => {
       try {
-        const response = await axios.get<HabitDto[]>('${process.env.REACT_APP_BACKEND}/api/v1/habits');
+        const response = await axios.get<HabitDto[]>('http://localhost:8089/api/v1/habits');
         setHabits(response.data);
       } catch (error) {
         console.error('Error fetching habits:', error);
