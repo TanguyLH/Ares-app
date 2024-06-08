@@ -45,6 +45,16 @@ Jest, Typescript, Nodemon
 4. Check in browser at localhost:8089/api/v1/health if you get a json healthcheck
 
 ## Frontend
+To create a dev environment
+**cd frontend**
+**npx expo start**
+
+
+To create a dev environment
+```
+cd frontend\Ares-app
+npx expo start
+```
 
 ## TODOs
 
