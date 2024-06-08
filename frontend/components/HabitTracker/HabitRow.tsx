@@ -6,7 +6,7 @@ export default function HabitRow({habit}) {
   return (
       <View style={styles.row}>
         <Text style={styles.cell}>{habit.name}</Text>
-        <Text style={styles.cell}>{habit.objectiveRelated}</Text>
+        <Text style={styles.cell}>{habit.description}</Text>
       </View>
   );
 }

@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import Datatable from '@/components/Datatable';
 import { Text, View } from '@/components/Themed';
 
 export default function TabTwoScreen() {
