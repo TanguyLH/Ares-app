@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default function FormButtonSave({isFormVisible, setIsFormVisible }) {
+export default function FormButtonSave({isFormVisible, setIsFormVisible }:any) {
     const toggleFormVisibility = () => {
         setIsFormVisible(!isFormVisible);
     }

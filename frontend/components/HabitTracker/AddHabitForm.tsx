@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import FormInputText from "@/components/HabitTracker/FormInputText";
 import FormButtonSave from "@/components/HabitTracker/FormButtonSave";
 
-export default function AddHabitForm({ isFormVisible, setIsFormVisible }) {
+export default function AddHabitForm({ isFormVisible, setIsFormVisible }:any) {
 
   return (
       <View>

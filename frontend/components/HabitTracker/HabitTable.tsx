@@ -1,12 +1,12 @@
+import {Habit} from '@/Dtos/Habit';
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import HabitRow from "@/components/HabitTracker/HabitRow";
-import { Habit } from "@/Dtos/Habit";
 
 import {Text, View} from "react-native";
 import ButtonAddHabit from "@/components/HabitTracker/ButtonAddHabit";
 
-export default function HabitTable({ data }) {
+export default function HabitTable({data}: any) {
 
   return (
       <View style={styles.container}>

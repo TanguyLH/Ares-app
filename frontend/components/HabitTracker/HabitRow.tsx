@@ -1,8 +1,10 @@
+import {Habit} from '@/Dtos/Habit';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
+
 import {Text, View} from "react-native";
-export default function HabitRow({habit}) {
+export default function HabitRow({habit} : any) {
   return (
       <View style={styles.row}>
         <Text style={styles.cell}>{habit.name}</Text>
