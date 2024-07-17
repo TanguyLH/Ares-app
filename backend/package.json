@@ -6,10 +6,8 @@
   "scripts": {
     "test": "npx jest",
     "dev": "nodemon .",
-    "start:nodemon": "nodemon src/main.ts",
     "start": "nest start --watch",
     "format": "prettier --write \"src/**/*.ts\"",
-    "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d db_handler/data_source.ts",
     "seed:run": "npx ts-node db_handler/seed/seedDatabase.ts"
   },

@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module';
 import { Habit } from './entities/habit.entity';
 import { HabitsSheet } from './entities/habits-sheet.entity';
 import { User } from './entities/user.entity';
+import { HabitCompletionsModule } from './habit-completions/habit-completions.module';
+import { HabitRecurrencesModule } from './habit-recurrences/habit-recurrences.module';
 
 @Module({
   imports: [
@@ -38,7 +40,8 @@ import { User } from './entities/user.entity';
     ]),
     UsersModule,
     HabitsModule,
-    HabitsSheetModule
+    HabitCompletionsModule,
+    HabitRecurrencesModule
   ],
   exports: [
     TypeOrmModule

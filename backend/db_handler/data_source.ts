@@ -1,7 +1,6 @@
 import { DataSource } from 'typeorm';
 import { User } from '../src/entities/user.entity';
 import { Habit } from '../src/entities/habit.entity';
-import { HabitsSheet } from '../src/entities/habits-sheet.entity';
 import { InitialSchema1716896539621 } from './migrations/1716896539621-initial_schema';
 
 export const AppDataSource = new DataSource({
@@ -11,7 +10,7 @@ export const AppDataSource = new DataSource({
   username: 'ares',
   password: 'ArEsPaSsWoRd',
   database: 'habits',
-  entities: [User, Habit, HabitsSheet],
+  entities: [User, Habit],
   migrations: [InitialSchema1716896539621],
   synchronize: false,
   logging: false,
