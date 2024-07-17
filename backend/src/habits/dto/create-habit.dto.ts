@@ -4,7 +4,7 @@ export class CreateHabitDto {
   @ApiProperty({ example: 'Exercise', description: 'The name of the habit' })
   name!: string;
 
-  @ApiProperty({ example: 'Daily morning exercise', description: 'The description of the habit' })
+  @ApiProperty({ example: 'Daily morning exercise', description: 'The description of the habit', required: false })
   description!: string;
 
   @ApiProperty({ example: true, description: 'Whether the habit is daily' })

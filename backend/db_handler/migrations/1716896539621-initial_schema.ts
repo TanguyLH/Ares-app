@@ -13,7 +13,7 @@ CREATE TABLE users (
 CREATE TABLE habit (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT,
     authorId INT NOT NULL REFERENCES users(id)
     isDaily BOOLEAN NOT NULL DEFAULT false,
     weekDays INT[] DEFAULT '{}'
