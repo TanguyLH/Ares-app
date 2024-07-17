@@ -2,14 +2,18 @@ import { Module } from '@nestjs/common';
 import { HealthModule } from './health/health.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HabitsSheetModule } from './habitsSheets/habits.sheet.module';
+
+// Custom modules
 import { HabitsModule } from './habits/habits.module';
 import { UsersModule } from './users/users.module';
-import { Habit } from './entities/habit.entity';
-import { HabitsSheet } from './entities/habits-sheet.entity';
-import { User } from './entities/user.entity';
 import { HabitCompletionsModule } from './habit-completions/habit-completions.module';
 import { HabitRecurrencesModule } from './habit-recurrences/habit-recurrences.module';
+
+// Custom entities
+import { Habit } from './entities/habit.entity';
+import { User } from './entities/user.entity';
+import { HabitCompletion } from './entities/habit-completion.entity';
+import { HabitRecurrence } from './entities/habit-recurrence.entity';
 
 @Module({
   imports: [
@@ -26,7 +30,7 @@ import { HabitRecurrencesModule } from './habit-recurrences/habit-recurrences.mo
         username: configService.get<string>('DB_USER', 'root'),
         password: configService.get<string>('DB_PASSWORD', 'root'),
         database: configService.get<string>('DB_NAME', 'test'),
-        entities: [Habit, HabitsSheet, User],
+        entities: [Habit, User, HabitCompletion, HabitRecurrence],
         synchronize: true,
         retryAttempts: 5,
         retryDelay: 5000,

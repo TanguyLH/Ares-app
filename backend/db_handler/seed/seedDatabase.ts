@@ -2,7 +2,6 @@ import { DataSource } from 'typeorm';
 import { habitSeedData } from './HabitSeedData';
 import { Habit } from '../../src/entities/habit.entity';
 import { User } from '../../src/entities/user.entity';
-import { HabitsSheet } from '../../src/entities/habits-sheet.entity';
 
 async function seedDatabase() {
 	const SeedDataSource = new DataSource({
