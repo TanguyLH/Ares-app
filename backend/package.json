@@ -6,10 +6,8 @@
   "scripts": {
     "test": "npx jest",
     "dev": "nodemon .",
-    "start:nodemon": "nodemon src/main.ts",
     "start": "nest start --watch",
     "format": "prettier --write \"src/**/*.ts\"",
-    "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d db_handler/data_source.ts",
     "seed:run": "npx ts-node db_handler/seed/seedDatabase.ts"
   },
@@ -25,6 +23,8 @@
     "@nestjs/swagger": "^7.3.1",
     "@nestjs/typeorm": "^10.0.2",
     "body-parser": "^1.20.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "dto-classes": "^0.0.13",

@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import * as path from 'path'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 
 let logger = new Logger("Main");
 
@@ -16,7 +16,7 @@ async function bootstrap() {
   console.log('Loaded environment variables:', process.env); */
 
   const app = await NestFactory.create(AppModule);
-
+  app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
     .setTitle('Habits Sheet API')
     .setDescription('The habits sheet API description')

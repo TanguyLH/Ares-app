@@ -10,17 +10,25 @@ CREATE TABLE users (
     username TEXT NOT NULL
 );
 
-CREATE TABLE habitsSheet (
-    id SERIAL PRIMARY KEY,
-    ownerName TEXT NOT NULL
-);
-
 CREATE TABLE habit (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT NOT NULL,
-    habitsSheetId INT NOT NULL REFERENCES habitsSheet(id),
+    description TEXT,
     authorId INT NOT NULL REFERENCES users(id)
+    isDaily BOOLEAN NOT NULL DEFAULT false,
+    weekDays INT[] DEFAULT '{}'
+);
+CREATE TABLE habitCompletion (
+    id SERIAL PRIMARY KEY,
+    habitId INT NOT NULL REFERENCES habit(id),
+    userId INT NOT NULL REFERENCES users(id),
+    date TIMESTAMP NOT NULL,
+    completed BOOLEAN DEFAULT true
+);
+CREATE TABLE habitRecurrence (
+    id SERIAL PRIMARY KEY,
+    habitId INT NOT NULL REFERENCES habit(id),
+    dayOfWeek INT NOT NULL
 );
             `,
         );
@@ -32,6 +40,8 @@ CREATE TABLE habit (
 DROP TABLE IF EXISTS habit;
 DROP TABLE IF EXISTS habitsSheet;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS habitCompletion;
+DROP TABLE IF EXISTS habitRecurrence;
             `,
         );
     }

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { User } from './user.entity';
-import { HabitsSheet } from './habits-sheet.entity';
+import { HabitCompletion } from './habit-completion.entity';
+import { HabitRecurrence } from './habit-recurrence.entity';
 
 @Entity()
 export class Habit {
@@ -13,9 +14,15 @@ export class Habit {
   @Column()
   description!: string;
 
-  @ManyToOne(() => HabitsSheet, habitsSheet => habitsSheet.habits)
-  habitsSheet!: HabitsSheet;
+  @Column()
+  isDaily!: boolean;
 
   @ManyToOne(() => User, user => user.habits)
   authorId!: User;
+
+  @OneToMany(() => HabitRecurrence, habitRecurrence => habitRecurrence.habit)
+  recurrences!: HabitRecurrence[];
+
+  @OneToMany(() => HabitCompletion, habitCompletion => habitCompletion.habit)
+  completions!: HabitCompletion[];
 }
