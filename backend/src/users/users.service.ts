@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-// import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -13,14 +13,14 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  // async create(createUserDto: CreateUserDto): Promise<User> {
-    // const { username, email, password } = createUserDto;
-    // const hashedPassword = await bcrypt.hash(password, 10);
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const { username, email, password } = createUserDto;
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // const user = this.userRepository.create({ username, email, password: hashedPassword });
-    // return await this.userRepository.save(user);
-    // return await this.userRepository.save({"Should create a user"});
-  // }
+    const user = this.userRepository.create({ username, email, password: hashedPassword });
+    return await this.userRepository.save(user);
+  }
 
   async findAll(): Promise<User[]> {
     return await this.userRepository.find();
@@ -30,6 +30,14 @@ export class UsersService {
     const user = await this.userRepository.findOneBy({id});
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async findOneByUsername(username: string): Promise<User> {
+    const user = await this.userRepository.findOneBy({ username });
+    if (!user) {
+      throw new NotFoundException(`User with username ${username} not found`);
     }
     return user;
   }

@@ -14,6 +14,8 @@ import { Habit } from './entities/habit.entity';
 import { User } from './entities/user.entity';
 import { HabitCompletion } from './entities/habit-completion.entity';
 import { HabitRecurrence } from './entities/habit-recurrence.entity';
+import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -45,8 +47,10 @@ import { HabitRecurrence } from './entities/habit-recurrence.entity';
     UsersModule,
     HabitsModule,
     HabitCompletionsModule,
-    HabitRecurrencesModule
+    HabitRecurrencesModule,
+    AuthModule
   ],
+  controllers: [AppController],
   exports: [
     TypeOrmModule
   ],
