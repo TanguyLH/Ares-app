@@ -41,8 +41,8 @@ Jest, Typescript, Nodemon
 
 1. Go in backend folder
 2. Run npm i
-3. Run npm run start
-4. Check in browser at localhost:8089/api/v1/health if you get a json healthcheck
+3. Run npm run start or npm run dev for florent
+5. Check in browser at localhost:8089/api/v1/health if you get a json healthcheck
 
 ## Frontend
 To create a dev environment
