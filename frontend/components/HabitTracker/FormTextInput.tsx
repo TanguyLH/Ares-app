@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function FormInputText({ property }: any) {
+export default function FormTextInput({ property }: any) {
   return (
       <View style={styles.container}>
         <Text style={styles.label}>{property}:</Text>

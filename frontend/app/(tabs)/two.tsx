@@ -1,29 +1,33 @@
+import {Habit} from '@/Dtos/Habit';
 import { StyleSheet } from 'react-native';
 
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
+import HabitTable from "@/components/HabitTracker/HabitTable";
+import { useState } from 'react';
 
+const datas :  Habit[] = [
+  { "id": 1, "name": "sleep 8h", "description": "have a better sleep" },
+  { "id": 2, "name": "cold shower", "description": "have more energy" },
+  { "id": 3, "name": "gym", "description": "become muscular" },
+  { "id": 4, "name": "clean my room", "description": "have a prettier room" },
+];
 export default function TabTwoScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-    </View>
-  );
-}
+   //const [habitDataTable, setHabitDataTable] = useState(fetch("http://localhost:8089/api/v1/habits"))
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+   const [data, setData] = useState<Habit[]>([]);
+
+   return (
+     <View style={styles.container}>
+       <HabitTable data={datas} />
+     </View>
+   );
+ }
+ 
+ const styles = StyleSheet.create({
+   container: {
+     flex: 1,
+     alignItems: 'center',
+     justifyContent: 'center',
+   }
+ });
+ 

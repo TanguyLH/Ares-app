@@ -1,14 +1,28 @@
 import {Habit} from '@/Dtos/Habit';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; 
+import ButtonModifyHabit from '@/components/HabitTracker/ButtonModifyHabit'
 
 
-import {Text, View} from "react-native";
-export default function HabitRow({habit} : any) {
-  return (
+export default function HabitRow({ habit }: any) {
+  const handleEdit = () => {
+    // Ajoutez votre logique de modification ici
+    console.log('Edit', habit);
+  };
+
+  const handleDelete = () => {
+    // Ajoutez votre logique de suppression ici
+    console.log('Delete', habit);
+  };
+    return (
       <View style={styles.row}>
         <Text style={styles.cell}>{habit.name}</Text>
         <Text style={styles.cell}>{habit.description}</Text>
+        <ButtonModifyHabit />
+        <TouchableOpacity onPress={handleDelete} style={styles.iconButton}>
+          <Icon name="trash" size={20} color="#F44336" />
+        </TouchableOpacity>
       </View>
   );
 }
@@ -16,7 +30,7 @@ export default function HabitRow({habit} : any) {
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center', // Centre le contenu verticalement
     padding: 15,
     backgroundColor: "#F0F8FF",
     borderBottomWidth: 1,
@@ -27,5 +41,12 @@ const styles = StyleSheet.create({
     color: "#333",
     flex: 1,
     paddingHorizontal: 5,
-  }
+  },
+  iconContainer: {
+    flexDirection: 'row', // Alignement horizontal des icônes
+    alignItems: 'center',
+  },
+  iconButton: {
+    marginLeft: 10, // Espacement entre les icônes
+  },
 });

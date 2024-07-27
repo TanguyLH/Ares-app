@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { View } from 'react-native';
-import FormInputText from "@/components/HabitTracker/FormInputText";
+import FormInputText from "@/components/HabitTracker/FormTextInput";
 import FormButtonSave from "@/components/HabitTracker/FormButtonSave";
+import FormCheckboxWithDays from "@/components/HabitTracker/FormCheckboxWithDays";
+import FormCloseButton from "@/components/HabitTracker/FormCloseButton";
 
 export default function AddHabitForm({ isFormVisible, setIsFormVisible }:any) {
 
@@ -10,9 +12,13 @@ export default function AddHabitForm({ isFormVisible, setIsFormVisible }:any) {
       <View>
         { isFormVisible && (
           <View style={styles.form}>
-            <FormInputText property="name"></FormInputText>
-            <FormInputText property="Description"></FormInputText>
-            <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormButtonSave>
+            <FormCloseButton isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormCloseButton>
+            <View style={styles.innerForm}>
+              <FormInputText property="name"></FormInputText>
+              <FormInputText property="Description"></FormInputText>
+              <FormCheckboxWithDays />
+              <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormButtonSave>
+            </View>
           </View>
         )}
     </View>
@@ -21,7 +27,7 @@ export default function AddHabitForm({ isFormVisible, setIsFormVisible }:any) {
 
 const styles = StyleSheet.create({
   form: {
-    position: 'absolute',
+    position: 'relative',
     bottom: 100,
     right: 30,
     backgroundColor: '#fff',
@@ -32,5 +38,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 5,
+  },
+  innerForm: {
+    paddingTop: 20,
   },
 });
