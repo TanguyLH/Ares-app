@@ -1,57 +1,60 @@
-# Ares-app
+# Ares-app : Un compagnon pour suivre vos habitudes
 
-React / React Native / Express / Node / PostgreSQL project for an app to track your day to day habits.
+Cette application utilise une stack technologique puissante pour vous aider à suivre vos habitudes au quotidien.
 
-To run this app, first go launch the database. Afterwards, you can start the backend. The frontend shall not require a permanent open connection to the backend, so the order isn't relevant.
+## Stack technologique
 
-## RUN DATABASE
+* **Frontend:** React Native (Expo)
+* **Backend:** NestJS avec base de données PostgreSQL
 
-### Requirements 
+## Prérequis
 
-To run the database, you'll only need to have bash, and docker, and your user set in the docker group.
+* **Node.js & npm (ou yarn):**  [https://nodejs.org/en](https://nodejs.org/en)
+* **Docker:** [https://www.docker.com/](https://www.docker.com/) (Assurez-vous que votre utilisateur est ajouté au groupe docker)
+* **Éditeur de code (au choix):** [https://code.visualstudio.com/](https://code.visualstudio.com/) ou [https://www.jetbrains.com/webstorm/](https://www.jetbrains.com/webstorm/) sont des options populaires.
 
-### Generate for the first time
+## Installation de la base de données (une fois)
 
-The data schema generation is done in a SQL file located in `database/scripts/ref/init_db.default.sql`. The init script will first check if any container instance named 'ares-database-postgres' is currently running, and will stop it if it's the case.
+1. **Naviguez vers le répertoire `database`.**
+2. **Exécutez le script d'initialisation:** `./initDatabase.sh`
+   - Ce script créera un conteneur Docker nommé `ares-database-postgres` et configurera le schéma de la base de données en utilisant le fichier de configuration `.env.db`.
 
-We run the database, with the settings in `.env.db`, and copy the default sql file, to `scripts/init_db.sql`. We then replace the variables with our own using `sed`. We finish the initialization by copying our init file into the docker entry point of the container, and running the sql script. If everything went correctly, we then can remove the init script from the database.
+## Configuration du backend
 
-### Commands
+1. **Naviguez vers le répertoire `backend`.**
+2. **Installez les dépendances:** `npm install`
+3. **Exécutez les migrations (une fois):** `npm run migration:run`
+   - Cela garantit que le schéma de la base de données est à jour avec votre code.
+4. **Insérez des données d'exemple (optionnel):** `npm run seed:run`
+   - Cela peuple la base de données avec des données d'exemple (utile pour les tests).
+5. **Démarrez le serveur de développement:** `npm run dev`
+   - Cela démarre le serveur backend sur le port `8089`. Vous pouvez vérifier qu'il fonctionne en visitant `http://localhost:8089/api/v1/health` dans votre navigateur.
 
-1. Go in `database` folder
-2. Run `./initDatabase.sh`
-3. Check output
+## Configuration du frontend
 
-## RUN BACKEND
+1. **Naviguez vers le répertoire `frontend`.**
+2. **Démarrez le serveur de développement:** `npx expo start`
+   - Cela démarre l'environnement de développement Expo pour le frontend.
 
-### Stack
+## Documentation Swagger
 
-#### Global
-- Nest JS
-- Open API
-- dotenv
+La documentation de l'API backend est disponible à l'adresse `http://localhost:8089/api-definition`.
 
-#### Dev
-- Jest
-- Typescript
-- Nodemon 
+## Variables d'environnement
 
-### Commands
+Le backend et la base de données utilisent des variables d'environnement définies dans `.env.db` pour leur configuration. Assurez-vous d'avoir créé ce fichier et de l'avoir rempli avec les détails nécessaires (informations de connexion à la base de données, etc.).
 
-1. Go in `backend` folder
-2. Run `npm i`
-3. Run `npm run start` or `npm run dev` for Florent
-4. Check in browser at `localhost:8089/api/v1/health` if you get a json healthcheck
+## Notes supplémentaires
 
-## Frontend
+* **Flux de travail recommandé:** Commencez par démarrer la base de données, puis le serveur backend.
+* **Frontend:** Le frontend peut être développé indépendamment car il interagit avec le backend via des appels API.
 
-To create a dev environment:
+## Conseils de développement
 
-```sh
-cd frontend
-npx expo start
-```
+* **Contrôle de version:** Utilisez un système de contrôle de version comme Git pour la collaboration et le suivi des versions.
+* **Qualité du code:** Envisagez d'utiliser un linter et un formatteur de code (ESLint, Prettier) pour maintenir la qualité de votre code.
 
-## TODOs
+## Contribution
 
--[ ] Integrate Nest and Jest to test the project
+N'hésitez pas à créer des demandes de fusion avec vos contributions au projet !
+
