@@ -63,6 +63,9 @@ coverage
 # IntelliJ IDEA
 .idea/
 
+# VSCODE
+.vscode/
+
 # nyc test coverage
 .nyc_output
 
