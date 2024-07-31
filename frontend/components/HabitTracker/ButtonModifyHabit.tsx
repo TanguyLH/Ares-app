@@ -4,14 +4,14 @@ import { View } from 'react-native';
 import AddHabitForm from './AddHabitForm';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 
-export default function ButtonModifyHabit() {
+export default function ButtonModifyHabit({habit} : any) {
   const [isFormVisible, setIsFormVisible] = useState(false)
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   }
   return (
       <View>
-        <AddHabitForm isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></AddHabitForm>
+        <AddHabitForm isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habit={habit}></AddHabitForm>
 
         <View>{!isFormVisible && (
             <TouchableOpacity onPress={toggleFormVisibility} style={styles.iconButton}>
