@@ -24,7 +24,7 @@ async function seedDatabase() {
 	
 	// Insert seed data
 	for (const habitData of habitSeedData) {
-		const user = await SeedDataSource.getRepository(User).findOneBy({ id: habitData.authorId });
+		const user = await SeedDataSource.getRepository(User).findOneBy({ id: habitData.author });
 		
 		if (!user) {
 			continue;
@@ -33,7 +33,7 @@ async function seedDatabase() {
 		const habit = new Habit();
 		habit.name = habitData.name;
 		habit.description = habitData.description;
-		habit.authorId = user;
+		habit.author = user;
 		await SeedDataSource.getRepository(Habit).save(habit).catch(error => {
 			console.error("Error inserting seed data:", error);
 		});

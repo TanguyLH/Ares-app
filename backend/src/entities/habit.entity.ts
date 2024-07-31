@@ -18,7 +18,7 @@ export class Habit {
   isDaily!: boolean;
 
   @ManyToOne(() => User, user => user.habits)
-  authorId!: User;
+  author!: User;
 
   @OneToMany(() => HabitRecurrence, habitRecurrence => habitRecurrence.habit)
   recurrences!: HabitRecurrence[];

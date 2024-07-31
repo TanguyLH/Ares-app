@@ -15,6 +15,6 @@ export class User {
   @Column()
   password!: string;
 
-  @OneToMany(() => Habit, habit => habit.authorId)
+  @OneToMany(() => Habit, habit => habit.author)
   habits!: Habit[];
 }
