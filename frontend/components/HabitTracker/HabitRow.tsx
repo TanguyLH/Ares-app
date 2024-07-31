@@ -19,7 +19,7 @@ export default function HabitRow({ habit }: any) {
       <View style={styles.row}>
         <Text style={styles.cell}>{habit.name}</Text>
         <Text style={styles.cell}>{habit.description}</Text>
-        <ButtonModifyHabit />
+        <ButtonModifyHabit habit={habit}></ButtonModifyHabit>
         <TouchableOpacity onPress={handleDelete} style={styles.iconButton}>
           <Icon name="trash" size={20} color="#F44336" />
         </TouchableOpacity>
