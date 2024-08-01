@@ -1,22 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function FormTextInput({ property, habitForm, setHabitForm}: any) {
-  const handleInputChange = (value: string) => {
-    setHabitForm((prevForm: any) => ({
-      ...prevForm,
-      [property]: value,
-    }));
+export default function FormTextInput({ property, habitField, updateHabitDataTable, habitId}: any) {
+  const handleChange = (value: any) => {
+    updateHabitDataTable(habitId, property.toLowerCase(), value);
   };
+
   return (
       <View style={styles.container}>
         <Text style={styles.label}>{property}:</Text>
         <TextInput
             style={styles.input}
-            value={habitForm ? habitForm : ''}
+            value={habitField ? habitField : ''}
             placeholder={`Enter ${property}`}
             placeholderTextColor="#A9A9A9"
-            onChangeText={handleInputChange}
+            onChangeText={handleChange}
         />
       </View>
   );

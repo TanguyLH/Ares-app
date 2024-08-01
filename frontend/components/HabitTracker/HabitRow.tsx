@@ -5,11 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonModifyHabit from '@/components/HabitTracker/ButtonModifyHabit'
 
 
-export default function HabitRow({ habit }: any) {
-  const handleEdit = () => {
-    // Ajoutez votre logique de modification ici
-    console.log('Edit', habit);
-  };
+export default function HabitRow({ habit, updateHabitDataTable }: any) {
 
   const handleDelete = () => {
     // Ajoutez votre logique de suppression ici
@@ -19,7 +15,7 @@ export default function HabitRow({ habit }: any) {
       <View style={styles.row}>
         <Text style={styles.cell}>{habit.name}</Text>
         <Text style={styles.cell}>{habit.description}</Text>
-        <ButtonModifyHabit habit={habit}></ButtonModifyHabit>
+        <ButtonModifyHabit habit={habit} updateHabitDataTable={updateHabitDataTable}></ButtonModifyHabit>
         <TouchableOpacity onPress={handleDelete} style={styles.iconButton}>
           <Icon name="trash" size={20} color="#F44336" />
         </TouchableOpacity>

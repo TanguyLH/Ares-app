@@ -6,7 +6,7 @@ import HabitRow from "@/components/HabitTracker/HabitRow";
 import {Text, View} from "react-native";
 import ButtonAddHabit from "@/components/HabitTracker/ButtonAddHabit";
 
-export default function HabitTable({data}: any) {
+export default function HabitTable({habitDataTable, updateHabitDataTable}: any) {
 
   return (
       <View style={styles.container}>
@@ -15,8 +15,8 @@ export default function HabitTable({data}: any) {
           <Text style={styles.headerTopBarText}>Description</Text>
         </View>
         <FlatList
-            data={data}
-            renderItem={({ item }) => <HabitRow habit={item} />}
+            data={habitDataTable}
+            renderItem={({ item }) => <HabitRow habit={item} updateHabitDataTable={updateHabitDataTable} />}
             keyExtractor={(item) => item.id.toString()}
         />
         <ButtonAddHabit />

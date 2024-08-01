@@ -6,8 +6,7 @@ import FormButtonSave from "@/components/HabitTracker/FormButtonSave";
 import FormCheckboxWithDays from "@/components/HabitTracker/FormCheckboxWithDays";
 import FormCloseButton from "@/components/HabitTracker/FormCloseButton";
 
-export default function AddHabitForm({ isFormVisible, setIsFormVisible, habit }:any) {
-  const [habitForm, setHabitForm] = useState(habit)
+export default function HabitForm({ isFormVisible, setIsFormVisible, habit, updateHabitDataTable }:any) {
 
   return (
       <View>
@@ -15,10 +14,10 @@ export default function AddHabitForm({ isFormVisible, setIsFormVisible, habit }:
           <View style={styles.form}>
             <FormCloseButton isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormCloseButton>
             <View style={styles.innerForm}>
-              <FormInputText property="name" habitForm={habitForm.name} setHabitForm={setHabitForm}></FormInputText>
-              <FormInputText property="description" habitForm={habitForm.description} setHabitForm={setHabitForm}></FormInputText>
+              <FormInputText property="name" habitField={habit.name} updateHabitDataTable={updateHabitDataTable} habitId={habit.id}></FormInputText>
+              <FormInputText property="description" habitField={habit.description} updateHabitDataTable={updateHabitDataTable} habitId={habit.id}></FormInputText>
               <FormCheckboxWithDays />
-              <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habitForm={habitForm}></FormButtonSave>
+              <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habitForm={habit}></FormButtonSave>
             </View>
           </View>
         )}
