@@ -17,12 +17,14 @@ export class InitialSchema1716896539621 implements MigrationInterface {
                 name TEXT NOT NULL,
                 description TEXT,
                 authorId INT NOT NULL REFERENCES users(id),
-                isDaily BOOLEAN NOT NULL DEFAULT false
+                isDaily BOOLEAN NOT NULL DEFAULT false,
+                recurrences INT[] DEFAULT '{}'
             );
 
             CREATE TABLE habitCompletion (
                 id SERIAL PRIMARY KEY,
                 habitId INT NOT NULL REFERENCES habit(id),
+                userId INT NOT NULL REFERENCES users(id),
                 date TIMESTAMP NOT NULL,
                 completed BOOLEAN DEFAULT true
             );
@@ -34,9 +36,10 @@ export class InitialSchema1716896539621 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(
             `
-DROP TABLE IF EXISTS habitCompletion;
-DROP TABLE IF EXISTS habit;
-DROP TABLE IF EXISTS users;
+            DROP TABLE IF EXISTS habit_completion CASCADE;
+            DROP TABLE IF EXISTS habit_recurrence CASCADE;
+            DROP TABLE IF EXISTS habit CASCADE;
+            DROP TABLE IF EXISTS users CASCADE;
             `,
         );
     }

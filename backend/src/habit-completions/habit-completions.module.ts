@@ -8,5 +8,6 @@ import { HabitCompletion } from '@/entities/habit-completion.entity';
   imports: [TypeOrmModule.forFeature([HabitCompletion])],
   controllers: [HabitCompletionsController],
   providers: [HabitCompletionsService],
+  exports: [HabitCompletionsService]
 })
 export class HabitCompletionsModule {}

@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HabitsModule } from './habits/habits.module';
 import { UsersModule } from './users/users.module';
 import { HabitCompletionsModule } from './habit-completions/habit-completions.module';
-import { HabitRecurrencesModule } from './habit-recurrences/habit-recurrences.module';
 
 // Custom entities
 import { Habit } from './entities/habit.entity';
@@ -47,7 +46,6 @@ import { AppController } from './app.controller';
     UsersModule,
     HabitsModule,
     HabitCompletionsModule,
-    HabitRecurrencesModule,
     AuthModule
   ],
   controllers: [AppController],

@@ -4,6 +4,7 @@ import { Habit } from '../../src/entities/habit.entity';
 import { User } from '../../src/entities/user.entity';
 import { HabitRecurrence } from '../../src/entities/habit-recurrence.entity';
 import { HabitCompletion } from '../../src/entities/habit-completion.entity';
+import { userSeedData } from './UserSeedData';
 
 async function seedDatabase() {
   const SeedDataSource = new DataSource({
@@ -28,6 +29,9 @@ async function seedDatabase() {
   console.log('Seeding database...');
   
   // Insert seed data
+  for (const user of userSeedData) {
+	await SeedDataSource.getRepository(User).save(user);
+  }
   for (const habitData of habitSeedData) {
     const user = await SeedDataSource.getRepository(User).findOneBy({ id: habitData.author });
     
@@ -40,16 +44,8 @@ async function seedDatabase() {
     habit.description = habitData.description;
     habit.isDaily = habitData.isDaily;
     habit.author = user;
+	habit.recurrences = habitData.recurrences || [];
     await SeedDataSource.getRepository(Habit).save(habit);
-
-    if (!habitData.isDaily && habitData.recurrences) {
-      for (const recurrenceData of habitData.recurrences) {
-        const recurrence = new HabitRecurrence();
-        recurrence.date = recurrenceData.date;
-        recurrence.habit = habit;
-        await SeedDataSource.getRepository(HabitRecurrence).save(recurrence);
-      }
-    }
   }
 
   await SeedDataSource.destroy();
