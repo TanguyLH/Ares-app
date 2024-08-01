@@ -20,12 +20,6 @@ export class InitialSchema1716896539621 implements MigrationInterface {
                 isDaily BOOLEAN NOT NULL DEFAULT false
             );
 
-            CREATE TABLE habitRecurrence (
-                id SERIAL PRIMARY KEY,
-                habitId INT NOT NULL REFERENCES habit(id),
-                date TIMESTAMP NOT NULL
-            );
-
             CREATE TABLE habitCompletion (
                 id SERIAL PRIMARY KEY,
                 habitId INT NOT NULL REFERENCES habit(id),
@@ -42,7 +36,6 @@ export class InitialSchema1716896539621 implements MigrationInterface {
         await queryRunner.query(
             `
 DROP TABLE IF EXISTS habitCompletion;
-DROP TABLE IF EXISTS habitRecurrence;
 DROP TABLE IF EXISTS habit;
 DROP TABLE IF EXISTS users;
             `,

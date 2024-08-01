@@ -13,9 +13,6 @@ export class CreateHabitDto {
   @ApiProperty({ example: [1, 2, 3], description: 'The days of the week the habit should be completed, if not daily', required: false })
   weekDays?: number[];
 
-  @ApiProperty({ example: 1, description: 'The ID of the habit sheet' })
-  habitSheetId!: number;
-
   @ApiProperty({ example: 1, description: 'The ID of the author' })
   authorId!: number;
 }

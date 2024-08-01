@@ -4,21 +4,51 @@ import { UpdateHabitDto } from './dto/update-habit.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Habit } from '../entities/habit.entity';
+import { User } from '@/entities/user.entity';
+import { HabitCompletion } from '@/entities/habit-completion.entity';
+import { HabitCompletionsService } from 'src/habit-completions/habit-completions.service';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class HabitsService {
   constructor(
     @InjectRepository(Habit)
     private readonly habitRepository: Repository<Habit>,
+    private userService: UsersService,
+    private habitCompletionService: HabitCompletionsService,
   ) {}
 
   async create(createHabitDto: CreateHabitDto): Promise<Habit> {
     const habit = new Habit();
-    habit.name = createHabitDto.name;
-    habit.description = createHabitDto.description;
-    if (!habit.name || !habit.description) {
+    if (!createHabitDto.name || !createHabitDto.description) {
       throw new BadRequestException('Name and description are required');
     }
+    habit.name = createHabitDto.name;
+    habit.description = createHabitDto.description;
+    const author = await this.userService.findOne(createHabitDto.authorId);
+    if (!author) {
+      throw new NotFoundException('Author with ID ${createHabitDto.authorId} not found');
+    }
+    habit.author = author; 
+    habit.isDaily = createHabitDto.isDaily;
+    habit.recurrences = [];
+    if (createHabitDto.weekDays) {
+      habit.recurrences = createHabitDto.weekDays;
+    } else if (!createHabitDto.isDaily) {
+      throw new BadRequestException('weekDays are required for non-daily habits');
+    }
+    
+    const completion = this.habitCompletionService.create(
+      {
+        habitId: habit.id,
+        date: new Date(),
+        completed : false,
+      }
+    );
+    if (!completion) {
+      throw new BadRequestException('Failed to create habitCompletion');
+    }
+
     return this.habitRepository.save(habit);
   }
 

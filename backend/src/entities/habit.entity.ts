@@ -20,8 +20,8 @@ export class Habit {
   @ManyToOne(() => User, user => user.habits)
   author!: User;
 
-  @OneToMany(() => HabitRecurrence, habitRecurrence => habitRecurrence.habit)
-  recurrences!: HabitRecurrence[];
+  @Column()
+  recurrences!: number[];
 
   @OneToMany(() => HabitCompletion, habitCompletion => habitCompletion.habit)
   completions!: HabitCompletion[];
