@@ -5,13 +5,13 @@ Voici la structure des composants React dans notre application :
 - **HabitTable**
   - **HabitRow**
     - **ButtonModifyHabit**
-      - **AddHabitForm**
+      - **HabitForm**
         - **FormCloseButton**
         - **FormTextInput**
         - **FormCheckboxWithDays**
         - **FormSaveButton**
   - **ButtonAddHabit**
-    - **AddHabitForm**
+    - **HabitForm**
       - **FormCloseButton**
       - **FormTextInput**
       - **FormCheckboxWithDays**
