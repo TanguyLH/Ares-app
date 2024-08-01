@@ -4,14 +4,14 @@ import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import HabitForm from '@/components/HabitTracker/HabitForm';
 
-export default function ButtonModifyHabit({habit, updateHabitDataTable} : any) {
+export default function ButtonModifyHabit({habit, updateHabit} : any) {
   const [isFormVisible, setIsFormVisible] = useState(false)
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   }
   return (
       <View>
-        <HabitForm isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habit={habit} updateHabitDataTable={updateHabitDataTable}></HabitForm>
+        <HabitForm isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habit={habit} onSaveFunction={updateHabit}></HabitForm>
 
         <View>{!isFormVisible && (
             <TouchableOpacity onPress={toggleFormVisibility} style={styles.iconButton}>

@@ -15,17 +15,31 @@ export default function TabTwoScreen() {
     { "id": 4, "name": "clean my room", "description": "have a prettier room" },
   ]);
 
-   const updateHabitDataTable = (id: number, field: any, value: any) => {
+  const updateHabitDataTable = (oldHabitId: number, updatedHabit: any) => {
     setHabitDataTable(prevHabitData =>
       prevHabitData.map(habit =>
-        habit.id === id ? { ...habit, [field]: value } : habit
+        habit.id === oldHabitId ? { ...habit, ...updatedHabit } : habit
       )
     );
+  };
+  const deleteHabit = (id: number) => {
+    setHabitDataTable(prevHabitData =>
+      prevHabitData.filter(habit => habit.id !== id)
+    );
+  };
+
+  const addHabit = (habit: any) => {
+    const newId = habitDataTable.length ? habitDataTable[habitDataTable.length - 1].id + 1 : 1;
+    const newHabit = { ...habit, id: newId };
+    setHabitDataTable(prevHabitData => [...prevHabitData, newHabit]);
   };
 
    return (
      <View style={styles.container}>
-       <HabitTable habitDataTable={habitDataTable} updateHabitDataTable={updateHabitDataTable} />
+       <HabitTable habitDataTable={habitDataTable} updateHabit={updateHabitDataTable} 
+       deleteHabit={deleteHabit}
+       addHabit={addHabit}
+       />
      </View>
    );
  }

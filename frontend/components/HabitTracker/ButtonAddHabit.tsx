@@ -3,14 +3,18 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { View } from 'react-native';
 import HabitForm from "@/components/HabitTracker/HabitForm";
 
-export default function ButtonAddHabit() {
+export default function ButtonAddHabit({addHabit}:any) {
   const [isFormVisible, setIsFormVisible] = useState(false)
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   }
   return (
       <View>
-        <HabitForm isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></HabitForm>
+        <HabitForm 
+        isFormVisible={isFormVisible} 
+        setIsFormVisible={setIsFormVisible} 
+        habit={null} 
+        onSaveFunction={addHabit}></HabitForm>
 
         <View>{!isFormVisible && (
             <TouchableOpacity onPress={toggleFormVisibility} style={styles.button}>

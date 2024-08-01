@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function FormTextInput({ property, habitField, updateHabitDataTable, habitId}: any) {
+export default function FormTextInput({ property, habitField, updateHabitField}: any) {
   const handleChange = (value: any) => {
-    updateHabitDataTable(habitId, property.toLowerCase(), value);
+    updateHabitField(value);
   };
 
   return (
