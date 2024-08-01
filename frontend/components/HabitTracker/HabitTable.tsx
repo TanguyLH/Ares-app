@@ -1,34 +1,35 @@
-import {Habit} from '@/Dtos/Habit';
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import HabitRow from "@/components/HabitTracker/HabitRow";
-
-import {Text, View} from "react-native";
 import ButtonAddHabit from "@/components/HabitTracker/ButtonAddHabit";
 
-export default function HabitTable({habitDataTable, updateHabit, deleteHabit, addHabit}: any) {
-
+export default function HabitTable({ habitDataTable, updateHabit, deleteHabit, addHabit }: any) {
   return (
-      <View style={styles.container}>
-        <View style={styles.headerTopBar}>
-          <Text style={styles.headerTopBarText}>Name</Text>
-          <Text style={styles.headerTopBarText}>Description</Text>
-        </View>
-        <FlatList
-            data={habitDataTable}
-            renderItem={({ item }) => <HabitRow habit={item}
-                                                updateHabit={updateHabit}
-                                                deleteHabit={deleteHabit}/>}
-            keyExtractor={(item) => item.id.toString()}
-        />
-        <ButtonAddHabit addHabit={addHabit} />
+    <View style={styles.container}>
+      <View style={styles.headerTopBar}>
+        <Text style={styles.headerTopBarText}>Name</Text>
+        <Text style={styles.headerTopBarText}>Description</Text>
       </View>
+      <FlatList
+        data={habitDataTable}
+        renderItem={({ item }) => (
+          <HabitRow 
+            habit={item} 
+            updateHabit={updateHabit} 
+            deleteHabit={deleteHabit} 
+          />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <ButtonAddHabit addHabit={addHabit} />
+    </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5"
+    backgroundColor: "#f5f5f5",
   },
   headerTopBar: {
     backgroundColor: "#85C1E9",

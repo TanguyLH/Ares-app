@@ -1,32 +1,37 @@
-import React, {useState} from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { View } from 'react-native';
-import HabitForm from "@/components/HabitTracker/HabitForm";
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import HabitForm from '@/components/HabitTracker/HabitForm';
 
-export default function ButtonAddHabit({addHabit}:any) {
-  const [isFormVisible, setIsFormVisible] = useState(false)
+export default function ButtonAddHabit({ addHabit }: any) {
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  // Toggles the visibility of the habit form
   const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
-  }
-  return (
-      <View>
-        <HabitForm 
-        isFormVisible={isFormVisible} 
-        setIsFormVisible={setIsFormVisible} 
-        habit={null} 
-        onSaveFunction={addHabit}></HabitForm>
+    setIsFormVisible(prevState => !prevState);
+  };
 
-        <View>{!isFormVisible && (
-            <TouchableOpacity onPress={toggleFormVisibility} style={styles.button}>
-              <Text style={styles.buttonText}>+</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+  return (
+    <View style={styles.container}>
+      <HabitForm
+        isFormVisible={isFormVisible}
+        setIsFormVisible={setIsFormVisible}
+        habit={null} // Pass null to indicate that this is for adding a new habit
+        onSaveFunction={addHabit}
+      />
+
+      {!isFormVisible && (
+        <TouchableOpacity onPress={toggleFormVisibility} style={styles.button}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    position: 'relative', // To position the button correctly
+  },
   button: {
     position: 'absolute',
     bottom: 30,
@@ -48,18 +53,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
     lineHeight: 30,
     fontWeight: 'bold',
-  },
-  form: {
-    position: 'absolute',
-    bottom: 100,
-    right: 30,
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 5,
   },
 });
