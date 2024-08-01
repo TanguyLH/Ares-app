@@ -23,7 +23,6 @@ export class InitialSchema1716896539621 implements MigrationInterface {
             CREATE TABLE habitCompletion (
                 id SERIAL PRIMARY KEY,
                 habitId INT NOT NULL REFERENCES habit(id),
-                userId INT NOT NULL REFERENCES users(id),
                 date TIMESTAMP NOT NULL,
                 completed BOOLEAN DEFAULT true
             );

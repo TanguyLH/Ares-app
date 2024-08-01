@@ -9,4 +9,7 @@ export class CreateHabitCompletionDto {
 
   @ApiProperty({ example: true, description: 'Whether the habit was completed' })
   completed!: boolean;
+
+  @ApiProperty({ example: 1, description: 'The ID of the user who completed the habit' })
+  userId!: number;
 }

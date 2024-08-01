@@ -19,17 +19,23 @@ export class HabitsService {
   ) {}
 
   async create(createHabitDto: CreateHabitDto): Promise<Habit> {
+    
+    // Creating default Habit entity and setting the fields properly
     const habit = new Habit();
     if (!createHabitDto.name || !createHabitDto.description) {
       throw new BadRequestException('Name and description are required');
     }
     habit.name = createHabitDto.name;
     habit.description = createHabitDto.description;
+
+    // Retrieving and applying the user id as the habit author
     const author = await this.userService.findOne(createHabitDto.authorId);
     if (!author) {
       throw new NotFoundException('Author with ID ${createHabitDto.authorId} not found');
     }
     habit.author = author; 
+
+    // Setting the habit recurrences and stuff
     habit.isDaily = createHabitDto.isDaily;
     habit.recurrences = [];
     if (createHabitDto.weekDays) {
@@ -38,17 +44,20 @@ export class HabitsService {
       throw new BadRequestException('weekDays are required for non-daily habits');
     }
     
+    // Creating an habit completion for this habit for the current date
     const completion = this.habitCompletionService.create(
       {
         habitId: habit.id,
         date: new Date(),
         completed : false,
+        userId: author.id,
       }
     );
     if (!completion) {
       throw new BadRequestException('Failed to create habitCompletion');
     }
 
+    // Saving the habit to the database
     return this.habitRepository.save(habit);
   }
 
