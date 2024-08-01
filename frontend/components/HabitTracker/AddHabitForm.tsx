@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { View } from 'react-native';
 import FormInputText from "@/components/HabitTracker/FormTextInput";
@@ -7,6 +7,7 @@ import FormCheckboxWithDays from "@/components/HabitTracker/FormCheckboxWithDays
 import FormCloseButton from "@/components/HabitTracker/FormCloseButton";
 
 export default function AddHabitForm({ isFormVisible, setIsFormVisible, habit }:any) {
+  const [habitForm, setHabitForm] = useState(habit)
 
   return (
       <View>
@@ -14,10 +15,10 @@ export default function AddHabitForm({ isFormVisible, setIsFormVisible, habit }:
           <View style={styles.form}>
             <FormCloseButton isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormCloseButton>
             <View style={styles.innerForm}>
-              <FormInputText property="name" value={habit ? habit.name : ''} />
-              <FormInputText property="description" value={habit ? habit.description : ''} />
+              <FormInputText property="name" habitForm={habitForm.name} setHabitForm={setHabitForm}></FormInputText>
+              <FormInputText property="description" habitForm={habitForm.description} setHabitForm={setHabitForm}></FormInputText>
               <FormCheckboxWithDays />
-              <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible}></FormButtonSave>
+              <FormButtonSave isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} habitForm={habitForm}></FormButtonSave>
             </View>
           </View>
         )}

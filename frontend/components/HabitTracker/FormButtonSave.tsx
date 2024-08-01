@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default function FormButtonSave({isFormVisible, setIsFormVisible }:any) {
+export default function FormButtonSave({isFormVisible, setIsFormVisible, habitForm }:any) {
     const toggleFormVisibility = () => {
         setIsFormVisible(!isFormVisible);
     }
+    //TODO requete post
     return (
         <TouchableOpacity onPress={toggleFormVisibility} style={styles.button}>
             <Text style={styles.buttonText}>Add Habit</Text>
