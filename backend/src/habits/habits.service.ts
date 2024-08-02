@@ -18,6 +18,16 @@ export class HabitsService {
     private habitCompletionService: HabitCompletionsService,
   ) {}
 
+  private HabitModelToDto(habit: Habit): CreateHabitDto {
+    return {
+      name: habit.name,
+      description: habit.description,
+      authorId: habit.author.id,
+      isDaily: habit.isDaily,
+      weekDays: habit.recurrences
+    };
+  }
+
   async create(createHabitDto: CreateHabitDto): Promise<Habit> {
     
     // Creating default Habit entity and setting the fields properly
@@ -61,8 +71,11 @@ export class HabitsService {
     return this.habitRepository.save(habit);
   }
 
-  async findAll(): Promise<Habit[]> {
-    return this.habitRepository.find();
+  async findAll(): Promise<CreateHabitDto[]> {
+    // Get the list of Habits in a variable
+    const habits = await this.habitRepository.find();
+    const habitDtos = habits.map(habit => this.HabitModelToDto(habit));
+    return habitDtos;
   }
 
   async findOne(id: number): Promise<Habit> {
