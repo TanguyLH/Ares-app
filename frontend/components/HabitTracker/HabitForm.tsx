@@ -5,25 +5,48 @@ import FormInputText from "@/components/HabitTracker/FormTextInput";
 import FormButtonSave from "@/components/HabitTracker/FormButtonSave";
 import FormCheckboxWithDays from "@/components/HabitTracker/FormCheckboxWithDays";
 import FormCloseButton from "@/components/HabitTracker/FormCloseButton";
+import axios from 'axios';
 
 export default function HabitForm({ isFormVisible, setIsFormVisible, habit, onSaveFunction }:any) {
   const [habitForm, setHabitForm] = useState(() => ({
     name: habit ? habit.name : '',
     description: habit ? habit.description : '',
-    days: habit ? habit.days : []
+    isDaily: habit ? habit.isDaily : true,
+    weekDays: habit ? habit.recurrences : [],
+    authorId: '1',
   }));
+
   const handleChange = (field: string, value: any) => {
     setHabitForm({ ...habitForm, [field]: value });
   };
-  const handleSave = (habitId: number | null, habitForm: any) => {
-    if (habitId) {
-        // Update the habit
-        onSaveFunction(habitId, habitForm);
-    } else {
-        // Add a new habit
-        onSaveFunction(habitForm);
+
+  const updateHabit = async (habitId: number) => {
+    try {
+      const response = await axios.patch(`http://localhost:8089/api/v1/habit/${habitId}`, habitForm);
+    } catch (error) {
+      console.error('Error updating habit', error);
     }
-};
+  };
+
+  // Fonction pour ajouter un habit
+  const addHabit = async () => {
+    try {
+      const response = await axios.post('http://localhost:8089/api/v1/habit', habitForm);
+    } catch (error) {
+      console.error('Error adding habit', error);
+    }
+  };
+
+  // Fonction pour gérer l'enregistrement
+  const handleSave = () => {
+    if (habit && habit.id) {
+      updateHabit(habit.id); // Mettre à jour un habit existant
+      onSaveFunction(habit.id, habitForm);
+    } else {
+      addHabit(); // Ajouter un nouvel habit
+      onSaveFunction(habitForm);
+    }
+  };
   return (
       <View>
         { isFormVisible && (
