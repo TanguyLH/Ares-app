@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,6 +11,9 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class HabitsService {
+  
+  private readonly logger = new Logger(HabitsService.name);
+
   constructor(
     @InjectRepository(Habit)
     private readonly habitRepository: Repository<Habit>,
@@ -74,6 +77,25 @@ export class HabitsService {
   async findAll(): Promise<CreateHabitDto[]> {
     // Get the list of Habits in a variable
     const habits = await this.habitRepository.find();
+    const habitDtos = habits.map(habit => this.HabitModelToDto(habit));
+    return habitDtos;
+  }
+
+  async findAllFromUserId(userId: number): Promise<CreateHabitDto[]> {
+
+    this.logger.log(`Finding habits for user with ID ${userId}`);
+    // Get the list of Habits in a variable
+    const User = await this.userService.findOne(userId);
+    const habits = await this.habitRepository.find({
+      relations: {
+        author: true
+      },
+      where: {
+        author :  {
+          id: userId
+        }
+      }
+    });
     const habitDtos = habits.map(habit => this.HabitModelToDto(habit));
     return habitDtos;
   }

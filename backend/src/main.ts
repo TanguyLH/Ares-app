@@ -9,7 +9,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 let logger = new Logger("Main");
 
 async function bootstrap() {
-  const envFilePath = path.resolve(__dirname, '../.env.test');
+  const envFilePath = path.resolve(__dirname, '../../.env');
   dotenv.config({ path: envFilePath });
     
   /* // Checking if the dotenv was loaded properly

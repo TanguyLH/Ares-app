@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
 import { registerUserDto } from './dto/register-user.dto';
+import { JwtPayload } from './dto/jwt-payload-format.dto';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AuthService {
 		if (user?.password !== password) {
 			throw new UnauthorizedException('Invalid credentials');
 		}
-		const payload = { sub: user.id, username: user.username };
+    	const payload : JwtPayload = { username: user.username, userId: user.id };
 		return {
 			access_token: await this.jwtService.signAsync(payload)
 		}
@@ -41,7 +42,7 @@ export class AuthService {
 	async register(userDto: registerUserDto) {
 		// const createUserDto = { ...userDto };
 	    const user = await this.usersService.create(userDto);
-    	const payload = { username: user.username, sub: user.id };
+    	const payload : JwtPayload = { username: user.username, userId: user.id };
     	return {
       		access_token: this.jwtService.sign(payload),
     	};
