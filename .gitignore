@@ -162,6 +162,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Docker postgres data
+postgres-data/
+
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
