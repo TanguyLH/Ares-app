@@ -18,13 +18,13 @@ docker run --name ares-database-postgres `
     -e POSTGRES_USER=$env:DB_USER `
     -e POSTGRES_PASSWORD=$env:DB_PASSWORD `
     -e POSTGRES_DB=$env:DB_NAME `
-    -p $env:DB_PORT:5432 `
+    -p ${env:DB_PORT}:5432 `
     -d postgres
 
 # Attendez que la base de données soit prête
 Write-Host "Waiting for PostgreSQL to start..."
 do {
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 5
     $result = docker exec -i ares-database-postgres pg_isready -U $env:DB_USER
 } while ($result -notmatch "accepting connections")
 
